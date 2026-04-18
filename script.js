@@ -112,17 +112,18 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-/* 7. CONTACT FORM VALIDATION
+/* 7. CONTACT FORM — Formspree
    ============================================================ */
-const contactForm = document.getElementById('contact-form');
-const formFeedback = document.getElementById('form-feedback');
+const FORMSPREE_ID  = 'JOUW_FORM_ID'; // vervang dit na aanmaken op formspree.io
+const contactForm   = document.getElementById('contact-form');
+const formFeedback  = document.getElementById('form-feedback');
+const submitBtn     = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
 if (contactForm) {
-  contactForm.addEventListener('submit', e => {
+  contactForm.addEventListener('submit', async e => {
     e.preventDefault();
     let valid = true;
 
-    // Clear previous errors
     contactForm.querySelectorAll('.form-group').forEach(g => {
       g.classList.remove('has-error');
       const err = g.querySelector('.error-msg');
@@ -140,9 +141,10 @@ if (contactForm) {
       valid = false;
     };
 
-    const naam   = document.getElementById('naam').value.trim();
-    const email  = document.getElementById('email').value.trim();
-    const bericht = document.getElementById('bericht').value.trim();
+    const naam     = document.getElementById('naam').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const telefoon = document.getElementById('telefoon').value.trim();
+    const bericht  = document.getElementById('bericht').value.trim();
 
     if (!naam)    showError('naam',    'Vul je naam in.');
     if (!email)   showError('email',   'Vul een geldig e-mailadres in.');
@@ -152,15 +154,33 @@ if (contactForm) {
 
     if (!valid) return;
 
-    // Simulate success (replace with real fetch/API call)
-    contactForm.innerHTML = `
-      <div class="success-msg">
-        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" style="margin:0 auto 1rem;display:block">
-          <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/>
-          <path stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
-        </svg>
-        Bedankt! We nemen binnen 24 uur contact op.
-      </div>`;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Versturen…';
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ naam, email, telefoon, bericht })
+      });
+
+      if (res.ok) {
+        contactForm.innerHTML = `
+          <div class="success-msg">
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" style="margin:0 auto 1rem;display:block">
+              <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/>
+              <path stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+            </svg>
+            Bedankt! We nemen binnen 24 uur contact op.
+          </div>`;
+      } else {
+        throw new Error('Fout bij verzenden');
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Verstuur aanvraag`;
+      formFeedback.innerHTML = '<p class="error-msg" style="margin-top:0.75rem">Er ging iets mis. Probeer het opnieuw of mail ons direct.</p>';
+    }
   });
 }
 
