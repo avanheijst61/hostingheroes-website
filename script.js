@@ -114,7 +114,7 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 
 /* 7. CONTACT FORM — Formspree
    ============================================================ */
-const FORMSPREE_ID  = 'JOUW_FORM_ID'; // vervang dit na aanmaken op formspree.io
+const FORMSPREE_ID  = 'mgorywev';
 const contactForm   = document.getElementById('contact-form');
 const formFeedback  = document.getElementById('form-feedback');
 const submitBtn     = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
