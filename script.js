@@ -70,22 +70,21 @@ counters.forEach(el => counterObserver.observe(el));
 
 /* 5. PRICING TABS
    ============================================================ */
-const tabBtns      = document.querySelectorAll('.tab-btn');
-const tabEenmalig  = document.getElementById('tab-eenmalig');
-const tabMaandelijks = document.getElementById('tab-maandelijks');
+const tabBtns         = document.querySelectorAll('.tab-btn');
+const tabEenmalig     = document.getElementById('tab-eenmalig');
+const tabMaandelijks  = document.getElementById('tab-maandelijks');
+const tabReviewbooster = document.getElementById('tab-reviewbooster');
+
+const allTabs = [tabEenmalig, tabMaandelijks, tabReviewbooster];
 
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    if (btn.dataset.tab === 'eenmalig') {
-      tabEenmalig.classList.remove('hidden');
-      tabMaandelijks.classList.add('hidden');
-    } else {
-      tabMaandelijks.classList.remove('hidden');
-      tabEenmalig.classList.add('hidden');
-    }
+    allTabs.forEach(t => t.classList.add('hidden'));
+    const target = document.getElementById('tab-' + btn.dataset.tab);
+    if (target) target.classList.remove('hidden');
   });
 });
 
