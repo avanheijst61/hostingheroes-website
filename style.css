@@ -606,6 +606,35 @@ body.nav-open .navbar__links a {
   padding-top: 2rem;
 }
 
+/* 12b. VOOR WIE
+   ============================================================ */
+.voor-wie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.voor-wie-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+.voor-wie-card h3 {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.voor-wie-card p {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
 /* 13. DIENSTEN
    ============================================================ */
 .services-grid {
@@ -1640,6 +1669,10 @@ blockquote::after  { content: '\201D'; }
 
   .reviewbooster-inner {
     grid-template-columns: 1fr;
+  }
+
+  .voor-wie-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .pricing-card--featured { transform: none; }
