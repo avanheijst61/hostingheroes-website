@@ -70,12 +70,13 @@ counters.forEach(el => counterObserver.observe(el));
 
 /* 5. PRICING TABS
    ============================================================ */
-const tabBtns         = document.querySelectorAll('.tab-btn');
-const tabEenmalig     = document.getElementById('tab-eenmalig');
-const tabMaandelijks  = document.getElementById('tab-maandelijks');
+const tabBtns          = document.querySelectorAll('.tab-btn');
+const tabEenmalig      = document.getElementById('tab-eenmalig');
+const tabMaandelijks   = document.getElementById('tab-maandelijks');
+const tabCarousel      = document.getElementById('tab-carousel');
 const tabReviewbooster = document.getElementById('tab-reviewbooster');
 
-const allTabs = [tabEenmalig, tabMaandelijks, tabReviewbooster];
+const allTabs = [tabEenmalig, tabMaandelijks, tabCarousel, tabReviewbooster];
 
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
