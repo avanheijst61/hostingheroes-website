@@ -78,18 +78,22 @@ const tabReviewbooster = document.getElementById('tab-reviewbooster');
 
 const allMainTabs = [tabWebsite, tabCarousel, tabReviewbooster];
 
+function showMainTab(id) {
+  allMainTabs.forEach(t => { if (t) t.classList.add('hidden'); });
+  const target = document.getElementById('tab-' + id);
+  if (target) target.classList.remove('hidden');
+}
+
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    allMainTabs.forEach(t => { if (t) t.style.display = 'none'; });
-    const target = document.getElementById('tab-' + btn.dataset.tab);
-    if (target) target.style.display = '';
+    showMainTab(btn.dataset.tab);
   });
 });
 
-// init: hide carousel + reviewbooster
-[tabCarousel, tabReviewbooster].forEach(t => { if (t) t.style.display = 'none'; });
+// init
+showMainTab('website');
 
 /* Sub-tabs inside Website & Hosting */
 const subtabBtns   = document.querySelectorAll('.subtab-btn');

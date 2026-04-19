@@ -957,6 +957,47 @@ body.nav-open .navbar__links a {
 }
 }
 
+.price__strike {
+  font-size: 0.75rem;
+  color: #22c55e;
+  font-weight: 600;
+  margin: -0.25rem 0 0.25rem;
+  text-decoration: none;
+}
+
+.new-service-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(168,85,247,0.08));
+  border: 1px solid rgba(255,107,53,0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.new-service-badge {
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, var(--color-accent), #a855f7);
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.new-service-banner p {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.new-service-banner p strong {
+  color: var(--color-text);
+}
+
 .pricing-card--reviewbooster-note {
   grid-column: 1 / -1;
   display: flex;
