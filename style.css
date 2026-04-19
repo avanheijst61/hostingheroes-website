@@ -654,6 +654,137 @@ body.nav-open .navbar__links a {
   box-shadow: var(--shadow-glow);
 }
 
+/* USP grid (Wat ons anders maakt) */
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.usp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.usp-card h3 {
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.usp-card p {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* Select field */
+.form-group select {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.form-group select option {
+  background: #1a1a1a;
+  color: var(--color-text);
+}
+
+/* Cookie banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 3rem);
+  max-width: 800px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  z-index: 9999;
+  padding: 1.25rem 1.5rem;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.cookie-banner.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(1rem);
+}
+
+.cookie-banner__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cookie-banner__text {
+  flex: 1;
+}
+
+.cookie-banner__text strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.cookie-banner__text p {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cookie-banner__text a {
+  color: var(--color-accent);
+}
+
+.cookie-banner__btns {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.cookie-banner__btns .btn-primary,
+.cookie-banner__btns .btn-secondary {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cookie-banner__btns {
+    width: 100%;
+  }
+  .cookie-banner__btns button {
+    flex: 1;
+  }
+}
+
 /* Reviewbooster featured card */
 .service-card--reviewbooster {
   grid-column: 1 / -1;
@@ -1743,7 +1874,8 @@ blockquote::after  { content: '\201D'; }
     grid-template-columns: 1fr;
   }
 
-  .voor-wie-grid {
+  .voor-wie-grid,
+  .usp-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 

@@ -170,13 +170,15 @@ if (contactForm) {
     const naam     = document.getElementById('naam').value.trim();
     const email    = document.getElementById('email').value.trim();
     const telefoon = document.getElementById('telefoon').value.trim();
+    const dienst   = document.getElementById('dienst').value;
     const bericht  = document.getElementById('bericht').value.trim();
 
     if (!naam)    showError('naam',    'Vul je naam in.');
     if (!email)   showError('email',   'Vul een geldig e-mailadres in.');
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
                   showError('email',   'Dit e-mailadres ziet er niet juist uit.');
-    if (!bericht) showError('bericht', 'Beschrijf kort jouw project.');
+    if (!dienst)  showError('dienst',  'Kies een dienst.');
+    if (!bericht) showError('bericht', 'Vertel kort over jezelf.');
 
     if (!valid) return;
 
@@ -187,7 +189,7 @@ if (contactForm) {
       const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ naam, email, telefoon, bericht })
+        body: JSON.stringify({ naam, email, telefoon, dienst, bericht })
       });
 
       if (res.ok) {
@@ -210,7 +212,27 @@ if (contactForm) {
   });
 }
 
-/* 8. FLOATING MOBILE CTA — hide near contact section
+/* 8. COOKIE BANNER
+   ============================================================ */
+const cookieBanner    = document.getElementById('cookie-banner');
+const cookieAccept    = document.getElementById('cookie-accept');
+const cookieFunctional = document.getElementById('cookie-functional');
+
+if (cookieBanner && !localStorage.getItem('cookie-consent')) {
+  cookieBanner.classList.remove('hidden');
+} else if (cookieBanner) {
+  cookieBanner.classList.add('hidden');
+}
+
+function dismissCookie(value) {
+  localStorage.setItem('cookie-consent', value);
+  cookieBanner.classList.add('hidden');
+}
+
+if (cookieAccept)     cookieAccept.addEventListener('click',     () => dismissCookie('all'));
+if (cookieFunctional) cookieFunctional.addEventListener('click', () => dismissCookie('functional'));
+
+/* 9. FLOATING MOBILE CTA — hide near contact section
    ============================================================ */
 const mobileFab   = document.getElementById('mobile-fab');
 const contactSection = document.getElementById('contact');
