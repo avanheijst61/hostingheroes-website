@@ -429,11 +429,17 @@
       <h2 class="section-title animate-on-scroll">Pakketten & prijzen website bouwen</h2>
       <p class="section-sub animate-on-scroll">Geen verborgen kosten. Geen verrassingen. Duidelijke prijzen voor een professionele website laten bouwen.</p>
       <div class="pricing-tabs animate-on-scroll">
-        <button class="tab-btn active" data-tab="eenmalig">Eenmalig</button>
-        <button class="tab-btn" data-tab="maandelijks">Maandelijks</button>
+        <button class="tab-btn active" data-tab="website">🌐 Website & Hosting</button>
         <button class="tab-btn tab-btn--highlight" data-tab="carousel">📱 Carousels</button>
         <button class="tab-btn tab-btn--highlight" data-tab="reviewbooster">⭐ Reviewbooster</button>
       </div>
+
+      <!-- Website & Hosting (eenmalig + maandelijks) -->
+      <div id="tab-website" class="tab-website-wrapper">
+        <div class="pricing-subtabs animate-on-scroll">
+          <button class="subtab-btn active" data-subtab="eenmalig">Eenmalig</button>
+          <button class="subtab-btn" data-subtab="maandelijks">Maandelijks</button>
+        </div>
 
       <!-- Eenmalig -->
       <div class="pricing-grid" id="tab-eenmalig">
@@ -492,7 +498,7 @@
       </div>
 
       <!-- Maandelijks -->
-      <div class="pricing-grid hidden" id="tab-maandelijks">
+      <div class="pricing-grid hidden" id="tab-maandelijks" style="margin-top:0">
         <div class="pricing-card card animate-on-scroll" data-delay="0">
           <h3>Basic</h3>
           <div class="price">
@@ -546,6 +552,7 @@
           <a href="#contact" class="btn-secondary btn-full">Kies Premium</a>
         </div>
       </div>
+      </div><!-- /tab-website -->
 
       <!-- Instagram Carousels -->
       <div class="pricing-grid hidden" id="tab-carousel">

@@ -70,22 +70,43 @@ counters.forEach(el => counterObserver.observe(el));
 
 /* 5. PRICING TABS
    ============================================================ */
+/* Main pricing tabs */
 const tabBtns          = document.querySelectorAll('.tab-btn');
-const tabEenmalig      = document.getElementById('tab-eenmalig');
-const tabMaandelijks   = document.getElementById('tab-maandelijks');
+const tabWebsite       = document.getElementById('tab-website');
 const tabCarousel      = document.getElementById('tab-carousel');
 const tabReviewbooster = document.getElementById('tab-reviewbooster');
 
-const allTabs = [tabEenmalig, tabMaandelijks, tabCarousel, tabReviewbooster];
+const allMainTabs = [tabWebsite, tabCarousel, tabReviewbooster];
 
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    allTabs.forEach(t => t.classList.add('hidden'));
+    allMainTabs.forEach(t => { if (t) t.style.display = 'none'; });
     const target = document.getElementById('tab-' + btn.dataset.tab);
-    if (target) target.classList.remove('hidden');
+    if (target) target.style.display = '';
+  });
+});
+
+// init: hide carousel + reviewbooster
+[tabCarousel, tabReviewbooster].forEach(t => { if (t) t.style.display = 'none'; });
+
+/* Sub-tabs inside Website & Hosting */
+const subtabBtns   = document.querySelectorAll('.subtab-btn');
+const tabEenmalig  = document.getElementById('tab-eenmalig');
+const tabMaandelijks = document.getElementById('tab-maandelijks');
+
+subtabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    subtabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (btn.dataset.subtab === 'eenmalig') {
+      tabEenmalig.classList.remove('hidden');
+      tabMaandelijks.classList.add('hidden');
+    } else {
+      tabMaandelijks.classList.remove('hidden');
+      tabEenmalig.classList.add('hidden');
+    }
   });
 });
 
